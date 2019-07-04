@@ -16,6 +16,6 @@ namespace BuchhaltungRazor.Models
         public decimal Betrag { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
         public decimal PreisEinheit { get; set; }
-  
+        public int AufwandID { get; set; }
     }
 }

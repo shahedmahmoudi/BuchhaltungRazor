@@ -20,9 +20,11 @@ namespace BuchhaltungRazor.Pages.AufwandLists
 
         public IList<AufwandList> AufwandList { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int? id)
         {
-            AufwandList = await _context.AufwandList.ToListAsync();
+
+            var AW = from m in _context.AufwandList where m.AufwandID == id select m; 
+            AufwandList = await AW.ToListAsync();
         }
     }
 }
