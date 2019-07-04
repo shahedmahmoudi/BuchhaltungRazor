@@ -1,0 +1,50 @@
+﻿@page
+@model BuchhaltungRazor.Pages.Aufwands.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Aufwand</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Aufwand.ID" />
+            <div class="form-group">
+                <label asp-for="Aufwand.Number" class="control-label"></label>
+                <input asp-for="Aufwand.Number" class="form-control" />
+                <span asp-validation-for="Aufwand.Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Aufwand.Datum" class="control-label"></label>
+                <input asp-for="Aufwand.Datum" class="form-control" />
+                <span asp-validation-for="Aufwand.Datum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Aufwand.Betrag" class="control-label"></label>
+                <input asp-for="Aufwand.Betrag" class="form-control" />
+                <span asp-validation-for="Aufwand.Betrag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Aufwand.Quittung" class="control-label"></label>
+                <input asp-for="Aufwand.Quittung" class="form-control" />
+                <span asp-validation-for="Aufwand.Quittung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
