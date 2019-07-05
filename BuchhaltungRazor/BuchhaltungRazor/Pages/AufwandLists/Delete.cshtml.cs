@@ -52,7 +52,7 @@ namespace BuchhaltungRazor.Pages.AufwandLists
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new { id = AufwandList.AufwandID });
         }
     }
 }

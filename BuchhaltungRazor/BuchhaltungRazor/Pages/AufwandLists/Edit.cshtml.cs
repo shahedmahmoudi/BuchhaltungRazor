@@ -63,7 +63,7 @@ namespace BuchhaltungRazor.Pages.AufwandLists
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new { id = AufwandList.AufwandID });
         }
 
         private bool AufwandListExists(int id)

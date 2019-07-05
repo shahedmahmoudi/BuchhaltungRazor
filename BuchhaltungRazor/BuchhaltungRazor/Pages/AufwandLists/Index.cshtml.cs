@@ -12,6 +12,7 @@ namespace BuchhaltungRazor.Pages.AufwandLists
     public class IndexModel : PageModel
     {
         private readonly BuchhaltungRazor.Models.BuchhaltungRazorContext _context;
+        public int? IDAufwand;
 
         public IndexModel(BuchhaltungRazor.Models.BuchhaltungRazorContext context)
         {
@@ -22,7 +23,7 @@ namespace BuchhaltungRazor.Pages.AufwandLists
 
         public async Task OnGetAsync(int? id)
         {
-
+            IDAufwand = id;
             var AW = from m in _context.AufwandList where m.AufwandID == id select m; 
             AufwandList = await AW.ToListAsync();
         }

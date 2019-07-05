@@ -5,10 +5,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Aufwand List</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" asp-route-id=@Model.IDAufwand>Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -46,3 +46,6 @@
 }
     </tbody>
 </table>
+<div>
+    <a asp-page="../AufWands/Index">Back to List</a>
+</div>

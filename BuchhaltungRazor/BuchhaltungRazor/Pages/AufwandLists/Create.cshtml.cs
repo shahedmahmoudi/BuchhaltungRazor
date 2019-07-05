@@ -12,14 +12,15 @@ namespace BuchhaltungRazor.Pages.AufwandLists
     public class CreateModel : PageModel
     {
         private readonly BuchhaltungRazor.Models.BuchhaltungRazorContext _context;
-
+        public int? IDAufwand;
         public CreateModel(BuchhaltungRazor.Models.BuchhaltungRazorContext context)
         {
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int? id)
         {
+            IDAufwand = id;
             return Page();
         }
 
@@ -33,10 +34,11 @@ namespace BuchhaltungRazor.Pages.AufwandLists
                 return Page();
             }
 
+            //AufwandList.AufwandID = html
             _context.AufwandList.Add(AufwandList);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new { id = AufwandList.AufwandID });
         }
     }
 }
