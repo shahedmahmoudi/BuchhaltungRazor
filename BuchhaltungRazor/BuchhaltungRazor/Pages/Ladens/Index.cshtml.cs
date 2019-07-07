@@ -29,7 +29,7 @@ namespace BuchhaltungRazor.Pages.Ladens
 
         public async Task OnGetAsync()
         {
-            var Lad = from m in _context.Laden select m;
+            var Lad = from m in _context.Ladens select m;
 
             if(!string.IsNullOrEmpty(SearchString))
             {

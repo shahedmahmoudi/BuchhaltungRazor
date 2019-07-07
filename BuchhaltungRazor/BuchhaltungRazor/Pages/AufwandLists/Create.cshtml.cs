@@ -35,7 +35,7 @@ namespace BuchhaltungRazor.Pages.AufwandLists
             }
 
             //AufwandList.AufwandID = html
-            _context.AufwandList.Add(AufwandList);
+            _context.AufwandListes.Add(AufwandList);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index", new { id = AufwandList.AufwandID });

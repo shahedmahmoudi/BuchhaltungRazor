@@ -22,9 +22,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Aufwand[0].Betrag)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Aufwand[0].Quittung)
-            </th>
+           
             <th></th>
         </tr>
     </thead>
@@ -40,9 +38,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Betrag)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quittung)
-            </td>
+            
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

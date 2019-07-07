@@ -33,7 +33,7 @@ namespace BuchhaltungRazor.Pages.Ladens
                 return Page();
             }
 
-            _context.Laden.Add(Laden);
+            _context.Ladens.Add(Laden);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

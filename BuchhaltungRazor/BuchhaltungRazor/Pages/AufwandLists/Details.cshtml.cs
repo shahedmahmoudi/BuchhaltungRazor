@@ -27,7 +27,7 @@ namespace BuchhaltungRazor.Pages.AufwandLists
                 return NotFound();
             }
 
-            AufwandList = await _context.AufwandList.FirstOrDefaultAsync(m => m.ID == id);
+            AufwandList = await _context.AufwandListes.FirstOrDefaultAsync(m => m.ID == id);
 
             if (AufwandList == null)
             {

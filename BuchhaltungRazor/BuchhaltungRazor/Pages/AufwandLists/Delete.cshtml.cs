@@ -19,7 +19,7 @@ namespace BuchhaltungRazor.Pages.AufwandLists
         }
 
         [BindProperty]
-        public AufwandList AufwandList { get; set; }
+        public AufwandList aufwandList { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace BuchhaltungRazor.Pages.AufwandLists
                 return NotFound();
             }
 
-            AufwandList = await _context.AufwandList.FirstOrDefaultAsync(m => m.ID == id);
+            aufwandList = await _context.AufwandListes.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (AufwandList == null)
+            if (aufwandList == null)
             {
                 return NotFound();
             }
@@ -44,15 +44,15 @@ namespace BuchhaltungRazor.Pages.AufwandLists
                 return NotFound();
             }
 
-            AufwandList = await _context.AufwandList.FindAsync(id);
+            aufwandList = await _context.AufwandListes.FindAsync(id);
 
-            if (AufwandList != null)
+            if (aufwandList != null)
             {
-                _context.AufwandList.Remove(AufwandList);
+                _context.AufwandListes.Remove(aufwandList);
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index", new { id = AufwandList.AufwandID });
+            return RedirectToPage("./Index", new { id = aufwandList.AufwandID });
         }
     }
 }

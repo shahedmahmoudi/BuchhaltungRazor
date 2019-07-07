@@ -27,7 +27,7 @@ namespace BuchhaltungRazor.Pages.Ladens
                 return NotFound();
             }
 
-            Laden = await _context.Laden.FirstOrDefaultAsync(m => m.ID == id);
+            Laden = await _context.Ladens.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Laden == null)
             {

@@ -13,27 +13,27 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.AufwandList.Titel)
+            @Html.DisplayNameFor(model => model.aufwandList.Titel)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AufwandList.Titel)
+            @Html.DisplayFor(model => model.aufwandList.Titel)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.AufwandList.Betrag)
+            @Html.DisplayNameFor(model => model.aufwandList.Betrag)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AufwandList.Betrag)
+            @Html.DisplayFor(model => model.aufwandList.Betrag)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.AufwandList.PreisEinheit)
+            @Html.DisplayNameFor(model => model.aufwandList.PreisEinheit)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AufwandList.PreisEinheit)
+            @Html.DisplayFor(model => model.aufwandList.PreisEinheit)
         </dd>
     </dl>
     
     <form method="post">
-        <input type="hidden" asp-for="AufwandList.ID" />
+        <input type="hidden" asp-for="aufwandList.ID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-page="./Index">Back to List</a>
     </form>

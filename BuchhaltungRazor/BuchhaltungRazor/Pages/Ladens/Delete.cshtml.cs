@@ -28,7 +28,7 @@ namespace BuchhaltungRazor.Pages.Ladens
                 return NotFound();
             }
 
-            Laden = await _context.Laden.FirstOrDefaultAsync(m => m.ID == id);
+            Laden = await _context.Ladens.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Laden == null)
             {
@@ -44,11 +44,11 @@ namespace BuchhaltungRazor.Pages.Ladens
                 return NotFound();
             }
 
-            Laden = await _context.Laden.FindAsync(id);
+            Laden = await _context.Ladens.FindAsync(id);
 
             if (Laden != null)
             {
-                _context.Laden.Remove(Laden);
+                _context.Ladens.Remove(Laden);
                 await _context.SaveChangesAsync();
             }
 

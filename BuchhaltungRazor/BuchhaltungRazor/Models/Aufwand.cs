@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
+using System.Web;
 using System.Threading.Tasks;
 
 namespace BuchhaltungRazor.Models
@@ -17,7 +17,9 @@ namespace BuchhaltungRazor.Models
         // [Required,DisplayFormat(DataFormatString = "{0:C0}", ApplyFormatInEditMode = true)]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Betrag { get; set; }
-        public byte[] Quittung { get; set; }
+       
+      //  public ICollection<FileUpload> fileupload { get; set; }
+        public ICollection<Schedule> schedule { get; set; }
         public ICollection< AufwandList> aufwandslist { get; set; }
     }
 }

@@ -14,9 +14,10 @@ namespace BuchhaltungRazor.Models
         {
         }
 
-        public DbSet<BuchhaltungRazor.Models.Laden> Laden { get; set; }
+        public DbSet<BuchhaltungRazor.Models.Laden> Ladens { get; set; }
         public DbSet<Aufwand> Aufwands { get; set; }
-        public DbSet<Aufwand> AufwandListes { get; set; }
-        public DbSet<BuchhaltungRazor.Models.AufwandList> AufwandList { get; set; }
+        public DbSet<AufwandList> AufwandListes { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+     //   public DbSet<BuchhaltungRazor.Models.FileUpload> FileUploads { get; set; }
     }
 }
