@@ -14,6 +14,7 @@
 <div class="row">
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
+
             <div class="form-group">
                 <label asp-for="FileUpload.Title" class="control-label"></label>
                 <input asp-for="FileUpload.Title" type="text" class="form-control" />
@@ -29,10 +30,23 @@
                 <input asp-for="FileUpload.UploadPrivateSchedule" type="file" class="form-control" style="height:auto" />
                 <span asp-validation-for="FileUpload.UploadPrivateSchedule" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="FileUpload.AufwandID" class="control-label"></label>
+                <input asp-for="FileUpload.AufwandID" type="text" class="form-control" style="height:auto" />
+
+            </div>
+            ---------------------------
+
+
             <input type="submit" value="Upload" class="btn btn-default" />
         </form>
     </div>
 </div>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" asp-for="FileUpload.UploadPublicSchedule" />
+    <input type="submit" />
+</form>
 
 <h3>Loaded Schedules</h3>
 <table class="table">

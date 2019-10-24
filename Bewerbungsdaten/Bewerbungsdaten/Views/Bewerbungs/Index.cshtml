@@ -1,0 +1,168 @@
+﻿@model IEnumerable<Bewerbungsdaten.ModelView.BewerbungDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section css {
+    <style>
+        .filter-table .quick {
+            margin-left: 0.5em;
+            font-size: 0.8em;
+            text-decoration: none;
+        }
+
+        .fitler-table .quick:hover {
+            text-decoration: underline;
+        }
+
+        td.alt {
+            background-color: #ffc;
+            background-color: rgba(255, 255, 0, 0.2);
+        }
+       .cell {
+  max-width: 50px; /* tweak me please */
+  white-space : nowrap;
+  overflow : hidden;
+}
+
+.expand-small-on-hover:hover {
+  max-width : 200px; 
+  text-overflow: ellipsis;
+}
+
+.expand-maximum-on-hover:hover {
+  max-width : initial; 
+}
+    </style>
+}
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="col-md-1">
+    <select id="ddlFilterColumns" class="form-control input-sm">
+        <option value="">All Columns</option>
+        <option value="0">ID</option>
+        <option value="1">Zahl Name</option>
+        <option value="2">Titel Name</option>
+        <option value="3">ProduktartTitel</option>
+
+    </select>
+</div>
+<div>
+    <table id="BewerbungList" class="table table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NameDerFirma)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Berufsbezeichnung)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ZustandTitel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StadtTitel)
+                </th>
+                @*<th>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Anforderungsdatum)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Wiederholungsdatum)
+                </th>
+                @*<th>
+            @Html.DisplayNameFor(model => model.Ergebnis)
+        </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Webseite)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Art)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameDerFirma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Berufsbezeichnung)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZustandTitel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StadtTitel)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.Adresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefon)
+        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Anforderungsdatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wiederholungsdatum)
+                </td>
+                @*<td class="cell expand-maximum-on-hover">
+            @Html.DisplayFor(modelItem => item.Ergebnis)
+        </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Webseite)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Art)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#BewerbungList').filterTable({ ignoreClass: 'no-filter', minRows: 2 });
+            $('#ddlFilterColumns').change(function () {
+                var index = $(this).val();
+                alert(index);
+                if (index == "")
+                    $('#BewerbungList td').removeClass('no-filter');
+                else {
+                    $('#BewerbungList>tbody>tr>td').addClass('no-filter');
+                    $('#BewerbungList>tbody>tr').each(function () {
+                        $('td:eq(' + index + ')', this).removeClass('no-filter');
+                    });
+                }
+            });
+        });
+    </script>
+}
+

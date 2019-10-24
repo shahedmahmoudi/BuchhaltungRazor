@@ -17,5 +17,7 @@ namespace BuchhaltungRazor.Models
         [Required]
         [Display(Name = "Private Schedule")]
         public IFormFile UploadPrivateSchedule { get; set; }
+
+        public int? AufwandID { get; set; }
     }
 }

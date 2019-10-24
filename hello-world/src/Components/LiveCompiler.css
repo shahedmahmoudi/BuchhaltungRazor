@@ -1,0 +1,32 @@
+body{
+margin: 0;
+padding: 0;
+font-family: monospace;
+
+}
+header{
+    display:block;
+    height:5vh;
+    overflow:auto;
+    background-color:pink;
+    color:red;
+    font-size: 8px 
+}
+
+.container{
+    height: 95vh;
+    display: flex;
+}
+pre{
+    background-color: #ff88ff;
+}
+pre,textarea{
+    width :50%;
+    font-family: monospace;
+    font-size: 8px;
+    margin:00;
+    padding: 10px;
+    color: #222;
+    word-wrap: break-word;
+}
+textarea:focus{outline: 0}

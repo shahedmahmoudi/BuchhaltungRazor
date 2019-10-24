@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -29,5 +30,6 @@ namespace BuchhaltungRazor.Models
         [Display(Name = "Uploaded (UTC)")]
         [DisplayFormat(DataFormatString = "{0:F}")]
         public DateTime UploadDT { get; set; }
+        public int? AufwandID { get; set; }
     }
 }

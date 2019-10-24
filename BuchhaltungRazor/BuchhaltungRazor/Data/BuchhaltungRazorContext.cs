@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BuchhaltungRazor.Models;
+//using System.Data.Entity;
 
 namespace BuchhaltungRazor.Models
 {
