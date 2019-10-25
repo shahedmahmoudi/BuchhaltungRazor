@@ -87,16 +87,40 @@ namespace Bewerbungsdaten.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NameDerFirma,Berufsbezeichnung,StandortId,Adresse,Telefon,Anforderungsdatum,Wiederholungsdatum,Ergebnis,Webseite,Art,Status")] Bewerbung bewerbung)
+        public async Task<IActionResult> Create([Bind("Id,NameDerFirma,Berufsbezeichnung,StandortId,Adresse,Telefon,Anforderungsdatum,Wiederholungsdatum,Ergebnis,Webseite,Art,Status,StadtID")] BewerbungDetail bewerbungDet)
         {
             if (ModelState.IsValid)
             {
+                var bewerbung = new Bewerbung()
+                {
+                   
+                    Adresse = bewerbungDet.Adresse,
+                    Anforderungsdatum = bewerbungDet.Anforderungsdatum,
+                    Berufsbezeichnung = bewerbungDet.Berufsbezeichnung,
+                    Ergebnis = bewerbungDet.Ergebnis,
+
+                     
+                   
+                    //StadtTitel = bewerbung.Standort.Name,
+                    //ZustandTitel = Brepository.GetZustand(bewerbung.Standort.ElternId),
+                    StandortId = bewerbungDet.StadtID,
+                    Telefon = bewerbungDet.Telefon,
+                    Status = bewerbungDet.Status,
+                    Webseite = bewerbungDet.Webseite,
+                    Wiederholungsdatum = bewerbungDet.Wiederholungsdatum,
+                    NameDerFirma = bewerbungDet.NameDerFirma,
+                    Art = bewerbungDet.Art
+                };
+
+
+
+
                 _context.Add(bewerbung);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StandortId"] = new SelectList(_context.Standort, "Id", "Id", bewerbung.StandortId);
-            return View(bewerbung);
+           // ViewData["StandortId"] = new SelectList(_context.Standort, "Id", "Id", bewerbung.Standort.Id);
+            return View(bewerbungDet);
         }
 
         // GET: Bewerbungs/Edit/5
@@ -106,14 +130,45 @@ namespace Bewerbungsdaten.Controllers
             {
                 return NotFound();
             }
+            
+            var Stad = new StadtRepository(_context);
+            BewerbungRepository Brepository = new BewerbungRepository(_context);
 
-            var bewerbung = await _context.Bewerbung.FindAsync(id);
+            //BDet.Stadts = Stad.GetStadt();
+            //BDet.Zustands = Stad.GetStandortZustandList();
+            var bewerbung = await _context.Bewerbung
+                .Include(x => x.Standort)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            var BDet = new BewerbungDetail()
+            {
+                Id = bewerbung.Id,
+                Adresse = bewerbung.Adresse,
+                Anforderungsdatum = bewerbung.Anforderungsdatum,
+                Berufsbezeichnung = bewerbung.Berufsbezeichnung,
+                Ergebnis = bewerbung.Ergebnis,
+
+                Stadts = Stad.GetStadt(),
+                Zustands = Stad.GetStandortZustandList(),
+                ZustandID = int.Parse(bewerbung.Standort.ElternId.ToString()),
+                //StadtTitel = bewerbung.Standort.Name,
+                //ZustandTitel = Brepository.GetZustand(bewerbung.Standort.ElternId),
+                StandortId= bewerbung.Standort.Id,
+                StadtID= bewerbung.Standort.Id,
+                Telefon = bewerbung.Telefon,
+                Status = bewerbung.Status,
+                Webseite = bewerbung.Webseite,
+                Wiederholungsdatum = bewerbung.Wiederholungsdatum,
+                NameDerFirma = bewerbung.NameDerFirma,
+                Art = bewerbung.Art
+
+            };
             if (bewerbung == null)
             {
                 return NotFound();
             }
-            ViewData["StandortId"] = new SelectList(_context.Standort, "Id", "Id", bewerbung.StandortId);
-            return View(bewerbung);
+            //ViewData["StandortId"] = new SelectList(_context.Standort, "Id", "Id", bewerbung.StandortId);
+            return View(BDet);
         }
 
         // POST: Bewerbungs/Edit/5
@@ -121,9 +176,9 @@ namespace Bewerbungsdaten.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NameDerFirma,Berufsbezeichnung,StandortId,Adresse,Telefon,Anforderungsdatum,Wiederholungsdatum,Ergebnis,Webseite,Art,Status")] Bewerbung bewerbung)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NameDerFirma,Berufsbezeichnung,StandortId,Adresse,Telefon,Anforderungsdatum,Wiederholungsdatum,Ergebnis,Webseite,Art,Status,StadtID")] BewerbungDetail bewerbungDet)
         {
-            if (id != bewerbung.Id)
+            if (id != bewerbungDet.Id)
             {
                 return NotFound();
             }
@@ -132,12 +187,33 @@ namespace Bewerbungsdaten.Controllers
             {
                 try
                 {
+                    var bewerbung = new Bewerbung()
+                    {
+                        Id= bewerbungDet.Id,
+                        Adresse = bewerbungDet.Adresse,
+                        Anforderungsdatum = bewerbungDet.Anforderungsdatum,
+                        Berufsbezeichnung = bewerbungDet.Berufsbezeichnung,
+                        Ergebnis = bewerbungDet.Ergebnis,
+
+
+
+                        //StadtTitel = bewerbung.Standort.Name,
+                        //ZustandTitel = Brepository.GetZustand(bewerbung.Standort.ElternId),
+                        StandortId = bewerbungDet.StadtID,
+                        Telefon = bewerbungDet.Telefon,
+                        Status = bewerbungDet.Status,
+                        Webseite = bewerbungDet.Webseite,
+                        Wiederholungsdatum = bewerbungDet.Wiederholungsdatum,
+                        NameDerFirma = bewerbungDet.NameDerFirma,
+                        Art = bewerbungDet.Art
+                    };
                     _context.Update(bewerbung);
                     await _context.SaveChangesAsync();
+                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BewerbungExists(bewerbung.Id))
+                    if (!BewerbungExists(bewerbungDet.Id))
                     {
                         return NotFound();
                     }
@@ -148,8 +224,8 @@ namespace Bewerbungsdaten.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StandortId"] = new SelectList(_context.Standort, "Id", "Id", bewerbung.StandortId);
-            return View(bewerbung);
+            //ViewData["StandortId"] = new SelectList(_context.Standort, "Id", "Id", bewerbung.StandortId);
+            return View(bewerbungDet);
         }
 
         // GET: Bewerbungs/Delete/5

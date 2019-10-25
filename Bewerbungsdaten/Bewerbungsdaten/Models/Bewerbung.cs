@@ -8,7 +8,7 @@ namespace Bewerbungsdaten.Models
         public int Id { get; set; }
         public string NameDerFirma { get; set; }
         public string Berufsbezeichnung { get; set; }
-        public int? StandortId { get; set; }
+         public int? StandortId { get; set; }
         public string Adresse { get; set; }
         public string Telefon { get; set; }
         public DateTime? Anforderungsdatum { get; set; }

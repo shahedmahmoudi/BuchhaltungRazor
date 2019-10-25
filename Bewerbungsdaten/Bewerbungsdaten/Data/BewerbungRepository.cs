@@ -55,9 +55,10 @@ namespace Bewerbungsdaten.Data
             return null;
         }
 
-        private string GetZustand(int? id)
+        public string GetZustand(int? id)
         {
             return _context.Standort.Find(id).Name;
         }
+      
     }
 }

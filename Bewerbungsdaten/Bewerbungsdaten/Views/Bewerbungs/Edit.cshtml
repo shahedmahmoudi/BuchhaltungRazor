@@ -1,4 +1,4 @@
-﻿@model Bewerbungsdaten.Models.Bewerbung
+﻿@model Bewerbungsdaten.ModelView.BewerbungDetail
 
 @{
     ViewData["Title"] = "Edit";
@@ -24,9 +24,18 @@
                 <span asp-validation-for="Berufsbezeichnung" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StandortId" class="control-label"></label>
-                <select asp-for="StandortId" class="form-control" asp-items="ViewBag.StandortId"></select>
-                <span asp-validation-for="StandortId" class="text-danger"></span>
+                @Html.LabelFor(x => Model.ZustandID, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.DropDownListFor(x => Model.ZustandID, new SelectList(Model.Zustands, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "ZustandID", @OnSelectedIndexChanged = "FillCity()" })
+                @Html.ValidationMessageFor(x => x.ZustandID, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => Model.StadtID, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.DropDownListFor(x => Model.StadtID, new SelectList(Model.Stadts, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "StadtID" })
+                @Html.ValidationMessageFor(x => x.StadtID, "", new { @class = "text-danger" })
+
             </div>
             <div class="form-group">
                 <label asp-for="Adresse" class="control-label"></label>
@@ -50,7 +59,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Ergebnis" class="control-label"></label>
-                <input  asp-for="Ergebnis" class="form-control" />
+                <input asp-for="Ergebnis" class="form-control" />
                 <span asp-validation-for="Ergebnis" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -81,4 +90,45 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            LoadZustand();
+
+            setTimeout(function () { document.getElementById("StadtID").value = "@Model.StadtID"; }, 1000);
+        });
+
+        $('#ZustandID').change(function () {
+            
+            LoadZustand();
+        });
+    </script>
+    <script>
+        function LoadZustand() {
+
+                var selectedZustand = $("#ZustandID").val();
+                var StadtsSelect = $('#StadtID');
+                StadtsSelect.empty();
+            if (selectedZustand != null && selectedZustand != '') {
+
+                    $.getJSON('@Url.Action("GetStadt")', { id: selectedZustand }, function (Stadts) {
+                        if (Stadts != null && !jQuery.isEmptyObject(Stadts))
+                        {
+                            StadtsSelect.append($('<option/>', {
+                                value: null,
+                                text: "Wählen Sie den Stadt"
+                            }));
+                            $.each(Stadts, function (index, StadtID) {
+                                StadtsSelect.append($('<option/>', {
+                                    value: StadtID.value,
+                                    text: StadtID.text
+                                }));
+                            });
+
+                        };
+                    });
+                }
+        }
+    </script>
 }
